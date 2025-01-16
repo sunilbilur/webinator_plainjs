@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webinator</title>
+	<meta charset="UTF-8">
+	<style>
+		#bottom_btns{
+			display: flex;
+			justify-content: center;
+			border: 1px solid blue;
+		}
+		#bottom_btns button{
+			padding: 20px 40px 20px 40px;
+			margin: 40px;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+	<script src="quill.min.js"></script>
+	<link href="quill.snow.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
+	<link rel="stylesheet" href="options.css">
+	<link rel="stylesheet" href="style.css">
+	<!--link rel="stylesheet" href="normalize.css"-->
+</head>
+
+<body>
+
+	<div id="webpages">
+		<div id="wpage_0"></div>
+		<div id="wpage_2" class="wpages"></div>
+		<div id="wpage_1"></div>
+	</div>
+
+	<div id="bottom_btns">
+		<button id="add_panel" class="btn btn-info">+</button>
+		<button id="rm_panel" class="btn btn-info">-</button>
+	</div>
+
+	<button id="prop_open_btn">&and;</button>
+	<button id="prop_close_btn">&or;</button>
+
+	<div id="options">
+		<div id="opt_tab_1">
+			<div class="tabs2">
+				<button id="panel_bg">panel background</button>
+				<button id="page_bg">webpage background</button>
+
+			</div>
+			<div id="tabs_panel">
+				<button id="bg_color_btn">Color</button>
+				<p>or</p>
+				<button id="bg_image_btn">Image</button>
+			</div>
+
+			<div id="color_tab">
+				<p>pick a color:</p><br>
+				<div id="pick_color">
+					<input type="color" id="bg_color_color">
+					<button id="pick_color_btn">Set Color</button>
+				</div><hr>
+				<p>or enter a color:</p>
+				<div id="enter_color">
+					<input type="text" id="bg_color_text" placeholder="Input hex value">
+					<button id="enter_color_btn">Set Color</button>
+				</div>
+			</div>
+
+			<div id="bg_image_tab">
+				<p>image</p><br>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+				<p>Image here!</p>
+			</div>
+		</div>
+
+		<div id="opt_tab_2">
+			<div class="tabs2">
+				<button id="widgets_btn">Widgets</button>
+				<button id="layout_btn">Layout</button>
+			</div>
+
+			<div id="widgets_tab">
+				<div id="widgets_first_row">
+					<p draggable="true" id="image" class="widget_btns">Image</p>
+					<p draggable="true" id="text" class="widget_btns">Text</p>
+					<p draggable="true" id="button" class="widget_btns">Button</p>
+				</div>
+				<div id="widgets_second_row">
+					<p draggable="true" id="embed" class="widget_btns">Embed</p>
+				</div>
+			</div>
+
+			<div id="layout_tab">
+				<div>
+					<p>Margin:</p>
+				</div>
+				<div id="margin_first_row">
+					<input class="margin_num" id="margin_top" type="number">
+				</div>
+				<div id="margin_second_row">
+					<input class="margin_num" id="margin_left" type="number">
+					<div></div>
+					<input class="margin_num" id="margin_right" type="number">
+				</div>
+				<div id="margin_third_row">
+					<input class="margin_num" id="margin_bottom" type="number">
+				</div>
+			</div>
+		</div>
+
+		<div id="opt_tab_3">
+
+			<div id="image_tab" class="prop_tabs">
+				<div id="image_preview"></div>
+				<div id="image_first_row">
+					<button id="image_local_search">Upload a local file</button><br>
+					<button id="image_online_search">Search image online</button>
+				</div>
+				<div id="image_second_row">
+					<div>Width: <input id="image_width" type="number" style="width: 8em"></div>
+					<hr>
+					<div>Height: <input id="image_height" type="number" style="width: 8em"></div>
+				</div>
+				<div id="image_third_row">
+					<input type="checkbox"> Keep aspect ratio while resizing
+				</div>
+				<div id="image_fourth_row">
+					Link: <input type="text" style="width:85%">
+				</div>
+			</div>
+
+			<div id="text_tab" class="prop_tabs">
+				<div id="text_toolbar">
+				   <div class="ql-toolbar ql-snow">
+					  <span class="ql-formats">
+						 <select class="ql-size">
+							<option value="small"></option>
+							<option selected></option><!-- Note a missing, thus falsy value, is used to reset to default -->
+							<option value="large"></option>
+							<option value="huge"></option>
+						</select>
+						 <button type="button" class="ql-italic"></button>
+						 <button type="button" class="ql-underline"></button>
+					  <span class="ql-formats">
+						 <button type="button" class="ql-indent" value="-1"></button>
+						 <button type="button" class="ql-indent" value="+1"></button>
+						 <select class="ql-align">
+							<option selected="selected"></option>
+							<option value="center"></option>
+							<option value="right"></option>
+							<option value="justify"></option>
+						 </select>
+						 <button type="button" class="ql-direction" value="rtl"></button>
+						 <button type="button" class="ql-list" value="ordered"></button>
+						 <button type="button" class="ql-list" value="bullet"></button>
+					  </span>
+					  <span class="ql-formats">
+						 <button type="button" class="ql-image"></button>
+						 <button type="button" class="ql-code-block"></button>
+						 <button type="button" class="ql-script" value="sub"></button>
+						 <button type="button" class="ql-script" value="super"></button>
+						 <button type="button" class="ql-clean"></button>
+					  </span>
+				   </div>
+				</div>
+			</div>
+			
+			<div id="button_tab" class="prop_tabs">
+				Text: <input type="text"id="btn_text" style="width:96%;">
+				<br><br>
+				Link: <input type="text" id="btn_link" style="width:96%;">
+				<br><br>
+				<div style="display: flex; justify-content: space-between">
+				<div>width:  <input type="text" id="btn_width" style="width:50%"></div>
+				<div>Height: <input type="text" id="btn_height" style="width:50%"></div>
+				</div>
+			</div>
+		</div>
+			
+		<div id="pages_modal">
+		  <!-- Modal content -->
+			<div class="modal_header">
+				<div style="font-size:30px;">Web Pages</div>
+				<div><button id="pages_modal_close_btn">Close</button></div>
+			</div>
+		  
+			<div class="modal_body">
+				<div id="pages_webpages">
+					<div id="pages_add_page_query">
+						<input type="text" id="pages_new_webpage_title" placeholder="Enter title of webpage...">
+						<button id="pages_new_webpage_btn">Add Page</button>
+					</div>
+
+					<div id="webpages_list">
+						<div id="li_wpage_2" style="display: flex;
+						justify-content: space-between;
+						width: 92%; align-items: center;">
+						<p>Home</p>
+						<span style="display:flex">
+							<button data-wpageid="2" id="home_page_edit_btn">Edit Page</button>
+							<button data-wpageid="2" id="home_page_del_btn"style="margin-left:4px;">&times;</button>
+						</span>
+						</div>
+					</div>
+				</div>
+
+				<div id="pages_header_footer">
+					<p style="margin-left:25px;font-size:1.6em;">Header / Footer Blocks</p><br>
+					<div id="li_header_block">
+						<p>Header Block</p>
+						<button id="header_edit">Edit Block</button>
+					</div>
+					<div id="li_footer_block">
+						<p>Footer Block</p>
+						<button id="footer_edit">Edit Block</button>
+					</div>
+					<br>
+					<hr>
+					<br><br>
+					<input type="checkbox" id="header_show"> Show header block on all webpages<br><br>
+					<input type="checkbox" id="footer_show"> Show footer block on all webpages
+				</div>
+			</div><!--modal_body-->
+		</div><!--pages_modal-->
+
+		<div id="unsplash_modal">
+			<div id="unsplash_modal_header">
+				<input type="text" id="unsplash_query" placeholder="e.g. water, nature, cityscape">
+				<button id="unsplash_search_btn">Search</button>
+			</div>
+			<div id="unsplash_search_result">
+			</div>
+			<div id="unsplash_modal_footer">
+				<button id="unsplash_image_select">select</button>
+				<button id="unsplash_modal_close">close</button>
+			</div>
+		</div>
+
+		<div id="opt_tab_5">
+			<div>
+				<button id="pages_btn">Pages</button></li>
+				<button id="build_btn">Build</button></li>
+			</div>
+			<hr>
+		</div>
+	</div>
+	
+	<script src="prop.js"></script>
+	<script src="fn.js"></script>
+	<script src="stuck-jszip/dist/jszip.min.js"></script>
+	<!--script src="FileSaver/dist/FileSaver.min.js"></script-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
+	<script src="build.js"></script>
+</body>
+</html>

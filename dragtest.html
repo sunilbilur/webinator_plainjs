@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webio1</title>
+	<meta charset="UTF-8">
+	<style>
+		#container{
+			display: flex;
+			border: 2px solid blue;
+		}
+		.draggable{
+			background-color:dodgerblue;
+			width: 200px;
+			height: 200px;
+			margin: 20px;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
+</head>
+<body>
+<div id="container">
+	<div class="draggable"></div>
+	<div class="draggable"></div>
+	<div class="draggable"></div>
+	<div>
+		<div class="draggable"></div>
+		<div class="draggable"></div>
+		<div class="draggable"></div>
+	</div>
+	<script>
+						$(".draggable").draggable({
+							grid:[10,10],
+							//containment:"#container_"+panel_no.toString(),
+						});
+						$(".draggable").resizable({
+							grid:5 
+						});
+	</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webio1</title>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+	<script src="quill.min.js"></script>
+	<link href="quill.snow.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
+	
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#cdiv_00_0{
+			border: 1px solid red;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="cdiv_00_0">
+
+		</div>
+	</div>
+	
+	<div id="toolbar">
+	   <div class="ql-toolbar ql-snow">
+		  <span class="ql-formats">
+			 <select class="ql-size">
+				<option value="small"></option>
+				<option selected></option><!-- Note a missing, thus falsy value, is used to reset to default -->
+				<option value="large"></option>
+				<option value="huge"></option>
+			</select>
+			 <button type="button" class="ql-italic"></button>
+			 <button type="button" class="ql-underline"></button>
+		  <span class="ql-formats">
+			 <button type="button" class="ql-indent" value="-1"></button>
+			 <button type="button" class="ql-indent" value="+1"></button>
+			 <select class="ql-align">
+				<option selected="selected"></option>
+				<option value="center"></option>
+				<option value="right"></option>
+				<option value="justify"></option>
+			 </select>
+			 <button type="button" class="ql-direction" value="rtl"></button>
+			 <button type="button" class="ql-list" value="ordered"></button>
+			 <button type="button" class="ql-list" value="bullet"></button>
+		  </span>
+		  <span class="ql-formats">
+			 <button type="button" class="ql-image"></button>
+			 <button type="button" class="ql-code-block"></button>
+			 <button type="button" class="ql-script" value="sub"></button>
+			 <button type="button" class="ql-script" value="super"></button>
+			 <button type="button" class="ql-clean"></button>
+		  </span>
+	   </div>
+	</div>
+	<script>
+		//$("#wrap").draggable();
+		//$("#wrap").resizable();
+		$("#cdiv_00_0").draggable();
+		$("#cdiv_00_0").resizable();
+		document.getElementById("cdiv_00_0").addEventListener("click",function() {
+			alert("event fired");
+		});
+		var quill = new Quill('#cdiv_00_0', {
+		  modules: {
+			toolbar: "#toolbar"
+		  },
+		  placeholder: 'Compose an epic...',
+		  theme: 'snow'  // or 'bubble'
+		});
+	</script>
+</body>
+
+</html>
